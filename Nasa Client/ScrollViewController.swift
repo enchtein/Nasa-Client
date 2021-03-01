@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScrollViewController: UIViewController {
+class ScrollViewController: UIViewController, StoryboardInitializable {
     
     var delegate: NewTableViewCell?
     var imageScrollView: ImageScrollView?

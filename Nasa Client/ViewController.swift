@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, StoryboardInitializable {
     let realm = try! Realm()
     var historyItems: Results<History>?
     var queryFromHistory: History?
@@ -125,9 +125,10 @@ class ViewController: UIViewController {
         self.view.addSubview(datePicker)
     }
     @objc func tapBarButton() {
-        if let vc = storyboard?.instantiateViewController(identifier: "HistoryViewController") as? HistoryViewController {
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+//        if let vc = storyboard?.instantiateViewController(identifier: "HistoryViewController") as? HistoryViewController {
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+        ApplicationCoordinator.shared.push(.history)
     }
     
     override func viewDidLoad() {
@@ -293,9 +294,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewTableViewCell {
             self.oneCell = cell
         }
-        if let vc = storyboard?.instantiateViewController(identifier: "ScrollViewController") as? ScrollViewController {
-            self.performSegue(withIdentifier: "GoToScrollView", sender: vc)
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewTableViewCell else { return }
+        ApplicationCoordinator.shared.push(.image(cell: cell))
         tableView.deselectRow(at: indexPath, animated: false)
     }
     

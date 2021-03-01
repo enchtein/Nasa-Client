@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class HistoryViewController: UIViewController {
+class HistoryViewController: UIViewController, StoryboardInitializable {
     let realm = try! Realm()
     var historyItems: Results<History>?
     private var barButton: UIBarButtonItem?
@@ -63,14 +63,8 @@ extension HistoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryCell", for: indexPath) as? HistoryTableViewCell {
-            let vc = storyboard?.instantiateViewController(identifier: "ViewController") as! ViewController
-            vc.queryFromHistory = nil
-//            print(indexPath.row)
-            guard let items = self.historyItems else { return }
-            let item = items[indexPath.row]
-            vc.queryFromHistory = item
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+        guard let items = self.historyItems else { return }
+        let item = items[indexPath.row]
+        ApplicationCoordinator.shared.push(.main(queryFromHistory: item))
     }
 }

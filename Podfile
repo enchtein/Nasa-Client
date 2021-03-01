@@ -7,5 +7,5 @@ target 'Nasa Client' do
 
   # Pods for Nasa Client
 pod 'Kingfisher', '~> 6.0'
-pod 'RealmSwift'
+pod 'RealmSwift', '>= 10.0.0'
 end
