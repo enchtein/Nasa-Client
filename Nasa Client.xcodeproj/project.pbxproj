@@ -15,7 +15,7 @@
 		5F19CDF225DD86E4003B71F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F19CDF025DD86E4003B71F1 /* LaunchScreen.storyboard */; };
 		5F1D2D6B25E1F3DD0067B7FF /* NewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1D2D6925E1F3DD0067B7FF /* NewTableViewCell.swift */; };
 		5F1D2D6C25E1F3DD0067B7FF /* NewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F1D2D6A25E1F3DD0067B7FF /* NewTableViewCell.xib */; };
-		5F2448A125DEB7C400897028 /* NasaClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2448A025DEB7C400897028 /* NasaClient.swift */; };
+		5F2448A125DEB7C400897028 /* Nasa Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2448A025DEB7C400897028 /* Nasa Client.swift */; };
 		5F2B003325E2F0E800D0256E /* ScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B003225E2F0E800D0256E /* ScrollViewController.swift */; };
 		5F2B003625E2F73600D0256E /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B003525E2F73600D0256E /* ImageScrollView.swift */; };
 		5F2B003F25E318F300D0256E /* ViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B003E25E318F300D0256E /* ViewControllerExtension.swift */; };
@@ -23,6 +23,9 @@
 		5F2B005125E34A2700D0256E /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B005025E34A2700D0256E /* Realm.swift */; };
 		5F2B005625E357AB00D0256E /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B005425E357AB00D0256E /* HistoryTableViewCell.swift */; };
 		5F2B005725E357AB00D0256E /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F2B005525E357AB00D0256E /* HistoryTableViewCell.xib */; };
+		6D0631FF25EE7E9200239FED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0631FE25EE7E9200239FED /* Model.swift */; };
+		6D06320325EE7EB800239FED /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06320225EE7EB800239FED /* Api.swift */; };
+		6D06320625EE7EC600239FED /* ApiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D06320525EE7EC600239FED /* ApiProvider.swift */; };
 		6D27587D25ED4316008FF255 /* RoutesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D27587C25ED4316008FF255 /* RoutesViewController.swift */; };
 		6D27588125ED43F4008FF255 /* Storyboard Initializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D27588025ED43F4008FF255 /* Storyboard Initializable.swift */; };
 		6D27588425ED444F008FF255 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D27588325ED444F008FF255 /* AppCoordinator.swift */; };
@@ -39,7 +42,7 @@
 		5F19CDF325DD86E4003B71F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F1D2D6925E1F3DD0067B7FF /* NewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTableViewCell.swift; sourceTree = "<group>"; };
 		5F1D2D6A25E1F3DD0067B7FF /* NewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTableViewCell.xib; sourceTree = "<group>"; };
-		5F2448A025DEB7C400897028 /* NasaClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NasaClient.swift; sourceTree = "<group>"; };
+		5F2448A025DEB7C400897028 /* Nasa Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Nasa Client.swift"; sourceTree = "<group>"; };
 		5F2B003225E2F0E800D0256E /* ScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewController.swift; sourceTree = "<group>"; };
 		5F2B003525E2F73600D0256E /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		5F2B003E25E318F300D0256E /* ViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -47,6 +50,9 @@
 		5F2B005025E34A2700D0256E /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
 		5F2B005425E357AB00D0256E /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		5F2B005525E357AB00D0256E /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		6D0631FE25EE7E9200239FED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		6D06320225EE7EB800239FED /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		6D06320525EE7EC600239FED /* ApiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiProvider.swift; sourceTree = "<group>"; };
 		6D27587C25ED4316008FF255 /* RoutesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoutesViewController.swift; path = ../../../SideMenu/SMCustom/SMCustom/RoutesViewController.swift; sourceTree = "<group>"; };
 		6D27588025ED43F4008FF255 /* Storyboard Initializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard Initializable.swift"; sourceTree = "<group>"; };
 		6D27588325ED444F008FF255 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 		5F19CDE425DD86E2003B71F1 /* Nasa Client */ = {
 			isa = PBXGroup;
 			children = (
+				6D0631FD25EE7E5F00239FED /* Model and Network */,
 				6D27587B25ED42F5008FF255 /* Coordinator */,
 				5F2B004B25E33E6400D0256E /* HistoryTableView */,
 				5F24489F25DEB7A100897028 /* model */,
@@ -116,7 +123,7 @@
 		5F24489F25DEB7A100897028 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				5F2448A025DEB7C400897028 /* NasaClient.swift */,
+				5F2448A025DEB7C400897028 /* Nasa Client.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -138,6 +145,16 @@
 				5F2B005525E357AB00D0256E /* HistoryTableViewCell.xib */,
 			);
 			path = HistoryCell;
+			sourceTree = "<group>";
+		};
+		6D0631FD25EE7E5F00239FED /* Model and Network */ = {
+			isa = PBXGroup;
+			children = (
+				6D06320225EE7EB800239FED /* Api.swift */,
+				6D06320525EE7EC600239FED /* ApiProvider.swift */,
+				6D0631FE25EE7E9200239FED /* Model.swift */,
+			);
+			path = "Model and Network";
 			sourceTree = "<group>";
 		};
 		6D27587B25ED42F5008FF255 /* Coordinator */ = {
@@ -284,15 +301,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F1D2D6B25E1F3DD0067B7FF /* NewTableViewCell.swift in Sources */,
+				6D06320625EE7EC600239FED /* ApiProvider.swift in Sources */,
 				5F19CDEA25DD86E2003B71F1 /* ViewController.swift in Sources */,
 				5F2B005625E357AB00D0256E /* HistoryTableViewCell.swift in Sources */,
+				6D06320325EE7EB800239FED /* Api.swift in Sources */,
 				5F2B003625E2F73600D0256E /* ImageScrollView.swift in Sources */,
 				6D27588125ED43F4008FF255 /* Storyboard Initializable.swift in Sources */,
 				5F2B003325E2F0E800D0256E /* ScrollViewController.swift in Sources */,
 				6D27588425ED444F008FF255 /* AppCoordinator.swift in Sources */,
+				6D0631FF25EE7E9200239FED /* Model.swift in Sources */,
 				5F2B004E25E33EBD00D0256E /* HistoryViewController.swift in Sources */,
 				5F19CDE625DD86E2003B71F1 /* AppDelegate.swift in Sources */,
-				5F2448A125DEB7C400897028 /* NasaClient.swift in Sources */,
+				5F2448A125DEB7C400897028 /* Nasa Client.swift in Sources */,
 				5F2B003F25E318F300D0256E /* ViewControllerExtension.swift in Sources */,
 				6D27587D25ED4316008FF255 /* RoutesViewController.swift in Sources */,
 				5F2B005125E34A2700D0256E /* Realm.swift in Sources */,

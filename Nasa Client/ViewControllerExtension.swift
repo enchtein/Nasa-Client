@@ -76,6 +76,7 @@ extension ViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         if self.dataTuple.rover != nil {
             let res = self.temp.rovers?.filter({$0.name == self.roverLabel.text}).first
+//            let res = self.temp?.rovers.filter({$0.name == self.roverLabel.text}).first
             guard let result = res else { return }
             
             let minDate = result.launch_date
@@ -84,6 +85,7 @@ extension ViewController {
             self.datePicker.minimumDate = dateFormatter.date(from: minDate)
             self.datePicker.maximumDate = dateFormatter.date(from: maxDate)
             self.temp.rovers = self.repositoryDataSourse?.rovers?.filter({$0.id == res?.id}).map({$0})
+//            self.temp?.rovers = (self.repositoryDataSourse?.rovers.filter({$0.id == res?.id}).map({$0}))!
         } else if self.dataTuple.camera != nil {
             var tempMinDate = [Date]()
             var tempMaxDate = [Date]()
@@ -128,7 +130,8 @@ extension ViewController {
             self.cameraPicker.reloadAllComponents()
             
             self.datePicker.reloadInputViews()
-            self.fetchQuery(task: self.dataTuple)
+//            self.fetchQuery(task: self.dataTuple)
+            self.fetchRequest(task: self.dataTuple)
         }
     }
 }

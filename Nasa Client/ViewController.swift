@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import PromiseKit
 
 class ViewController: UIViewController, StoryboardInitializable {
     let realm = try! Realm()
@@ -31,6 +32,8 @@ class ViewController: UIViewController, StoryboardInitializable {
     var camerasName = [String]()
     
     var temp = NasaClient()
+//    var temp: NasaClient?
+//    var temp = NasaClient()
     var repositoryDataSourse: NasaClient?
     var repositoryRovers: AllInfo?
     
@@ -85,6 +88,8 @@ class ViewController: UIViewController, StoryboardInitializable {
         
         self.dataTuple.rover = self.roverLabel.text != "All" ? self.roverLabel.text! : nil
         if self.cameraLabel.text != "All" {
+//            for rover in self.temp.rovers! {
+//            for rover in self.temp!.rovers {
             for rover in self.temp.rovers! {
                 for camera in rover.cameras {
                     if camera.full_name == self.cameraLabel.text {
@@ -163,8 +168,9 @@ class ViewController: UIViewController, StoryboardInitializable {
         self.tableView.separatorStyle = .singleLine
         self.tableView.separatorColor = .red
         
-        self.getAllData()
-        self.selectedItems()
+//        self.getAllData()
+        self.fetchRequestAll()
+//        self.selectedItems()
     }
     override func viewWillAppear(_ animated: Bool) {
         guard let data = self.queryFromHistory else { return }
@@ -185,59 +191,56 @@ class ViewController: UIViewController, StoryboardInitializable {
         }
         self.dataTuple.page = data.page
         self.queryFromHistory = nil
-        self.fetchQuery(task: self.dataTuple)
+//        self.fetchQuery(task: self.dataTuple)
+//        self.fetchRequest(task: self.dataTuple)
     }
-    
-    private func getAllData() {
-        NasaClient.performRequest(with: .getAll) { [weak self] (isSuccess, response) in
-            guard let self = self else {return}
-            if isSuccess {
-                self.repositoryDataSourse = response.0
-                self.temp = response.0
-                self.dataTuple.page = 1
-                self.selectedItems()
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.roverPicker.reloadAllComponents()
+    func fetchRequest(task: (rover: String?, camera: String?, date: String?, page: Int?)) {
+        firstly { Provider.performReguest(rover: task.rover ?? "curiosity", camera: task.camera ?? "all", date: task.date ?? "2021-02-20", page: task.page ?? 1) }.done { [weak self] (response) in
+            self?.repositoryRovers = response
+            
+            var tempRepository: AllInfo?
+            if self?.dataTuple.page != nil && (self?.dataTuple.page)! > 1 {
+//            if self.dataTuple.page != nil && self.dataTuple.page! > 1 {
+                tempRepository = response
+                if tempRepository?.photos != nil && (tempRepository?.photos.count)! > 0 {
+//                if tempRepository?.photos != nil && (tempRepository?.photos?.count)! > 0 {
+                    self?.repositoryRovers?.photos.append(contentsOf: tempRepository!.photos)
+//                    self.repositoryRovers?.photos?.append(contentsOf: (tempRepository?.photos)!)
+                } else {
+                    return
                 }
+            } else {
+                self?.repositoryRovers = response
             }
+            DispatchQueue.main.async {
+                try! self?.realm.write {
+                    let history = History()
+                    history.rover = self?.dataTuple.rover ?? ""
+                    history.date = self?.dataTuple.date ?? ""
+                    history.camera = self?.dataTuple.camera ?? ""
+                    history.page = self?.dataTuple.page ?? 0
+                    self?.realm.add(history)
+                }
+                self?.tableView.reloadData()
+            }
+
+        } .catch { (error) in
+            debugPrint(error.localizedDescription)
         }
     }
-    func fetchQuery(task: (String?, String?, String?, Int?)) {
-        self.queryFromHistory = nil
-        self.searchTimer?.invalidate()
-        self.searchTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { [weak self] (_) in
-            NasaClient.performRequest(with: .task(searchTask: self!.dataTuple)) { [weak self] (isSuccess, response) in
-                guard let self = self else { return }
-                if isSuccess {
-                    
-                    
-                    var tempRepository: AllInfo?
-                    if self.dataTuple.page != nil && self.dataTuple.page! > 1 {
-                        tempRepository = response.1
-                        if tempRepository?.photos != nil && (tempRepository?.photos?.count)! > 0 {
-                            self.repositoryRovers?.photos?.append(contentsOf: (tempRepository?.photos)!)
-                        } else {
-                            return
-                        }
-                    } else {
-                        self.repositoryRovers = response.1
-                    }
-                    
-                    DispatchQueue.main.async {
-                        try! self.realm.write {
-                            let history = History()
-                            history.rover = self.dataTuple.rover ?? ""
-                            history.date = self.dataTuple.date ?? ""
-                            history.camera = self.dataTuple.camera ?? ""
-                            history.page = self.dataTuple.page ?? 0
-                            self.realm.add(history)
-                        }
-                        self.tableView.reloadData()
-                    }
-                }
+    func fetchRequestAll() {
+        firstly { Provider.performRequestAll() }.done { [weak self] (response) in
+            self?.repositoryDataSourse = response
+            self?.temp = response
+            print(self?.repositoryDataSourse)
+            self?.selectedItems()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                self?.roverPicker.reloadAllComponents()
             }
-        })
+        } .catch { (error) in
+            debugPrint(error.localizedDescription)
+        }
     }
     
     @IBAction func buttonClick(_ sender: UIButton) {
@@ -262,7 +265,8 @@ class ViewController: UIViewController, StoryboardInitializable {
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.repositoryRovers?.photos != nil {
-            return (self.repositoryRovers?.photos!.count)!
+//            return (self.repositoryRovers?.photos!.count)!
+            return (self.repositoryRovers?.photos.count)!
         } else {
             return 0
         }
@@ -285,9 +289,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let lastRow = indexPath.row
-        if lastRow == (self.repositoryRovers?.photos!.count)! - 1 {
+//        if lastRow == (self.repositoryRovers?.photos!.count)! - 1 {
+        if lastRow == (self.repositoryRovers?.photos.count)! - 1 {
             self.dataTuple.page! += 1
-            self.fetchQuery(task: self.dataTuple)
+//            self.fetchQuery(task: self.dataTuple)
+            self.fetchRequest(task: self.dataTuple)
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

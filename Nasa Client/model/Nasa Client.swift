@@ -7,11 +7,11 @@
 
 import Foundation
 import RealmSwift
-
-struct NasaClient: Codable {
+/*
+struct NasaClient2: Codable {
     var rovers: [Rovers]?
     
-    static func performRequest(with requestType: RequestType, completion: @escaping (_ isSuccess: Bool, _ response: (NasaClient, AllInfo)) -> ()) {
+    static func performRequest(with requestType: RequestType, completion: @escaping (_ isSuccess: Bool, _ response: (NasaClient2, AllInfo2)) -> ()) {
         var repStringURL = ""
         switch requestType {
         case .getAll:
@@ -42,8 +42,8 @@ struct NasaClient: Codable {
         guard let repURL = URL(string: repStringURL) else {return}
         
         URLSession.shared.dataTask(with: repURL) { (data, response, error) in
-            var result = NasaClient()
-            var rover = AllInfo()
+            var result = NasaClient2()
+            var rover = AllInfo2()
             guard data != nil else {
                 print("NO DATA")
                 completion(false, (result, rover))
@@ -59,8 +59,8 @@ struct NasaClient: Codable {
             do {
                 dump(data)
                 switch requestType {
-                case .getAll: result = try JSONDecoder().decode(NasaClient.self, from: data!)
-                case .task(_): rover = try JSONDecoder().decode(AllInfo.self, from: data!)
+                case .getAll: result = try JSONDecoder().decode(NasaClient2.self, from: data!)
+                case .task(_): rover = try JSONDecoder().decode(AllInfo2.self, from: data!)
                 }
                 completion(true, (result, rover))
             } catch {
@@ -71,10 +71,10 @@ struct NasaClient: Codable {
     }
 }
 
-struct AllInfo: Codable {
+struct AllInfo2: Codable {
     var photos: [Photos]?
 }
-struct Rovers: Codable {
+struct Rovers2: Codable {
     var id: Int
     var name: String
     var launch_date: String
@@ -82,23 +82,24 @@ struct Rovers: Codable {
     var total_photos: Int
     var cameras: [Cameras]
 }
-struct Cameras: Codable {
+struct Cameras2: Codable {
     var name: String
     var full_name: String
 }
-struct Photos: Codable {
+struct Photos2: Codable {
     var id: Int
     var camera: Cameras
     var img_src: String
     var earth_date: String
     var rover: Rover
 }
-struct Rover: Codable {
+struct Rover2: Codable {
     var id: Int
     var name: String
 }
 
-enum RequestType {
+enum RequestType2 {
     case getAll
     case task(searchTask: (rover: String?, camera: String?, date: String?, page: Int?))
 }
+*/

@@ -8,4 +8,7 @@ target 'Nasa Client' do
   # Pods for Nasa Client
 pod 'Kingfisher', '~> 6.0'
 pod 'RealmSwift', '>= 10.0.0'
+pod 'Moya', '~> 14.0'
+pod "PromiseKit", "~> 6.8"
+
 end
